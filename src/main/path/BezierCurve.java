@@ -4,29 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BezierCurve {
-    private List<Waypoint> controlPoints;
+    private final List<Waypoint> controlPoints;
 
     public BezierCurve(List<Waypoint> controlPoints) {
         this.controlPoints = controlPoints;
     }
 
     public List<Waypoint> getInterpolatedPoints() {
-        List<Waypoint> result = new ArrayList<>();
-        for (double t = 0; t <= 1; t += 0.02) {
-            result.add(deCasteljau(controlPoints, t));
+        List<Waypoint> curve = new ArrayList<>();
+        int steps = 100;
+        for (int i = 0; i <= steps; i++) {
+            double t = i / (double) steps;
+            curve.add(deCasteljau(controlPoints, t));
         }
-        return result;
+        return curve;
     }
 
     private Waypoint deCasteljau(List<Waypoint> points, double t) {
-        if (points.size() == 1) return points.get(0);
-        List<Waypoint> next = new ArrayList<>();
-        for (int i = 0; i < points.size() - 1; i++) {
-            double x = (1 - t) * points.get(i).x + t * points.get(i + 1).x;
-            double y = (1 - t) * points.get(i).y + t * points.get(i + 1).y;
-            double z = (1 - t) * points.get(i).z + t * points.get(i + 1).z;
-            next.add(new Waypoint(x, y, z));
+        List<Waypoint> tmp = new ArrayList<>(points);
+        int n = tmp.size();
+        for (int r = 1; r < n; r++) {
+            for (int i = 0; i < n - r; i++) {
+                double x = (1 - t) * tmp.get(i).x + t * tmp.get(i + 1).x;
+                double y = (1 - t) * tmp.get(i).y + t * tmp.get(i + 1).y;
+                double z = (1 - t) * tmp.get(i).z + t * tmp.get(i + 1).z;
+                tmp.set(i, new Waypoint(x, y, z));
+            }
         }
-        return deCasteljau(next, t);
+        return tmp.get(0);
     }
 }

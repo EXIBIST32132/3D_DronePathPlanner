@@ -1,0 +1,159 @@
+/* PathPlanner 3D Dark Theme CSS */
+
+.root {
+    -fx-font-family: 'Segoe UI', 'Arial', sans-serif;
+    -fx-background-color: #181a20;
+}
+
+/* Sidebar (drawer) */
+.vbox {
+    -fx-background-color: #23272e;
+}
+
+/* Title bar */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #bfbfbf;
+}
+
+/* Main title */
+.label.main-title {
+    -fx-font-size: 20px;
+    -fx-text-fill: #f8f8f2;
+    -fx-font-weight: bold;
+}
+
+/* Status indicator */
+.label.status {
+    -fx-text-fill: #4caf50;
+    -fx-font-size: 14px;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #31343b;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 6;
+    -fx-padding: 4 12 4 12;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-border-color: #444;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, #00000044, 2, 0.2, 0, 1);
+}
+.button:hover {
+    -fx-background-color: #444a54;
+    -fx-text-fill: #fff;
+}
+.button:pressed {
+    -fx-background-color: #22252a;
+}
+
+/* Highlighted/selected row */
+.hbox:selected, .hbox.selected, .waypoint-selected {
+    -fx-background-color: #3a3f4b;
+}
+
+/* Waypoint list row */
+.hbox {
+    -fx-background-color: transparent;
+    -fx-padding: 2 0 2 0;
+}
+
+/* Text fields */
+.text-field {
+    -fx-background-color: #23272e;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #444;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-size: 13px;
+}
+.text-field:focused {
+    -fx-background-color: #31343b;
+    -fx-border-color: #4caf50;
+}
+
+/* Console output */
+.text-area {
+    -fx-control-inner-background: #181a20;
+    -fx-text-fill: #bfbfbf;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #444;
+}
+
+/* TitledPane */
+.titled-pane {
+    -fx-background-color: #23272e;
+    -fx-text-fill: #bfbfbf;
+    -fx-font-size: 14px;
+    -fx-border-color: #444;
+    -fx-border-radius: 6;
+}
+.titled-pane > .title {
+    -fx-background-color: #23272e;
+    -fx-text-fill: #bfbfbf;
+    -fx-font-size: 14px;
+}
+
+/* Tooltip */
+.tooltip {
+    -fx-background-color: #31343b;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10 6 10;
+    -fx-effect: dropshadow(gaussian, #00000044, 2, 0.2, 0, 1);
+}
+
+/* Scrollbar */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: #23272e;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #444a54;
+    -fx-background-radius: 6;
+}
+
+/* 3D SubScene background (set in code, but for completeness) */
+.subscene {
+    -fx-background-color: #181a20;
+}
+
+.scroll-pane {
+    -fx-background: #23272e;
+    -fx-border-color: #444;
+    -fx-border-width: 0 1 0 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #23272e;
+}
+
+.button, .export-btn, .arduino-btn {
+    -fx-background-color: #444a54;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-padding: 6 16 6 16;
+    -fx-background-radius: 6;
+    -fx-border-color: #888;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-effect: dropshadow(gaussian, #00000044, 2, 0.2, 0, 1);
+}
+.button:hover, .export-btn:hover, .arduino-btn:hover {
+    -fx-background-color: #5a5f6b;
+    -fx-text-fill: #fff;
+}
+
+.label, .sidebar-label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 15px;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+} 

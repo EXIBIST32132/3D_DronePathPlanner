@@ -7,21 +7,14 @@ import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
 
 public class PlaneModel extends Group {
-    private final PhongMaterial pathMaterial;
-
     public PlaneModel() {
         Box body = new Box(10, 3, 20);
         body.setMaterial(new PhongMaterial(Color.ORANGE));
-        Sphere head = new Sphere(2);
-        head.setTranslateZ(-10);
-        head.setMaterial(new PhongMaterial(Color.RED));
 
-        this.getChildren().addAll(body, head);
+        Sphere nose = new Sphere(2);
+        nose.setTranslateZ(-10);
+        nose.setMaterial(new PhongMaterial(Color.RED));
 
-        this.pathMaterial = new PhongMaterial(Color.CYAN);
-    }
-
-    public PhongMaterial getPathMaterial() {
-        return pathMaterial;
+        this.getChildren().addAll(body, nose);
     }
 }
