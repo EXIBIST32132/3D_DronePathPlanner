@@ -1,41 +1,67 @@
-# Plane Drone Path Planner (Java + Arduino)
+# 3D PathPlanner for Foam Planes/Drones
 
-This project lets you design 3D flight paths using a JavaFX visualizer, then sends those paths to an Arduino-powered plane-shaped drone using serial communication. The drone interprets these paths as waypoints to follow using GPS and onboard control.
+A modern JavaFX application inspired by FRC PathPlanner, designed for planning, visualizing, and running 3D paths for foam airplanes and drones.
 
-## 🛠 Features
-- 3D JavaFX-based waypoint visualizer
-- Cubic Bezier curve path interpolation
-- Serial communication to Arduino (jSerialComm)
-- Arduino C++ code to follow waypoints with GPS and IMU
-- Modular Java structure for GUI, path, and comms
+## Features
 
-## 🧱 Requirements
+- **Project Browser:**
+  - Grid of cards for all saved paths, each with a name and 2D preview.
+  - Create, rename, delete, and autosave paths visually.
+- **Autosave/Load:**
+  - Each path is autosaved as a JSON file in your home directory (e.g., `~/.pathplanner_<pathName>.json`).
+  - Paths are loaded automatically on startup.
+- **3D Path Editor/Visualizer:**
+  - Catmull-Rom spline path generation through all waypoints.
+  - Realistic plane animation along the path, with play/pause, replay, and time slider controls.
+  - Intuitive orbit camera controls (yaw and zoom).
+  - Modern, styled UI for all controls and hotbars.
+- **Double-clickable Mac App:**
+  - Bundle as a `.app` with a custom icon using `jpackage`.
+- **Robust error handling and debug logging.**
 
-### PC (Java side)
-- Java 17+
-- IntelliJ IDEA
-- JavaFX SDK
-- jSerialComm (add to `lib/`)
+## Usage
 
-### Arduino
-- Arduino Uno/Nano/Mega
-- Neo-6M GPS
-- MPU6050
-- Motor + ESC + control surfaces (servo)
+1. **Build the JAR:**
+   ```sh
+   ./mvnw clean package
+   ```
+2. **Run with JavaFX (for development):**
+   ```sh
+   java --module-path /path/to/javafx-sdk-24.0.2/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -jar target/Drone-1.0-SNAPSHOT.jar
+   ```
+3. **Create a Mac .app with Icon:**
+   - Convert your PNGs to `.icns` and place in `src/main/resources/icons/icon.icns`.
+   - Use `jpackage`:
+     ```sh
+     jpackage \
+       --type app-image \
+       --input target \
+       --main-jar Drone-1.0-SNAPSHOT.jar \
+       --main-class main.gui.Visualizer3D \
+       --name PathPlanner3D \
+       --icon src/main/resources/icons/icon.icns \
+       --java-options '--add-opens=main.gui=javafx.graphics' \
+       --module-path /path/to/javafx-sdk-24.0.2/lib \
+       --add-modules javafx.controls,javafx.fxml,javafx.graphics
+     ```
+   - Double-click the resulting `.app` to run.
 
-## 🧭 How it works
+## Path Autosave Location
+- Each path is saved as a JSON file in your home directory, e.g.:
+  - `~/.pathplanner_MyPath.json`
+- Paths are loaded automatically on startup.
 
-1. User selects points in 3D space.
-2. Java app builds a smooth Bezier path.
-3. Path is sent over serial to Arduino.
-4. Arduino reads GPS, finds heading/distance.
-5. Drone follows path point-by-point.
+## Requirements
+- Java 17+ (tested with OpenJDK 23)
+- JavaFX 24.0.2 SDK
+- Maven
+- (For Mac .app) Xcode command line tools for `iconutil` and `jpackage`
 
-## 📂 Structure
+## Credits
+- Inspired by [PathPlanner](https://github.com/mjansen4857/pathplanner)
+- Uses [Gson](https://github.com/google/gson) and [jSerialComm](https://fazecast.github.io/jSerialComm/)
 
-src/
-├── Main.java
-├── gui/Visualizer3D.java
-├── path/BezierCurve.java, Waypoint.java
-├── comm/SerialTransmitter.java
+---
+
+**Enjoy planning and flying your 3D paths!**
 
